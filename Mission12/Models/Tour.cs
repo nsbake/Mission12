@@ -15,13 +15,9 @@ namespace Mission12.Models
         [BindNever]
         public int Id { get; set; }
 
-        public Tour (Appointment appointment)
-        {
-            Appointment = appointment;
-        }
+        public string Date { get; set; }
 
-        [Required]
-        public Appointment Appointment { get; set; }
+        public int Time { get; set; }
 
         [Required(ErrorMessage ="Please provide a group name")]
         public string Name { get; set; }
