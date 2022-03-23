@@ -13,6 +13,8 @@ namespace Mission12.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        //private databaseContext databaseContext { get; set; }
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -24,6 +26,57 @@ namespace Mission12.Controllers
         }
 
         public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult TourForm(Appointment appointment)
+        {
+            return View(new Tour(appointment));
+        }
+
+        [HttpPost]
+        public IActionResult TourForm(Tour tour)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO update database
+                //repo.saveTour(tour);
+                return Confirmation();
+            }
+            else
+            {
+                //this will throw bc no appointment passed
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            //TODO set all this up, ref FilmCollection proj
+            var tour = DbContext.Tours.FirstOrDefault(x => x.Id == id);
+            return View("TourForm",tour);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Tour tour)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO update database
+                //repo.saveTour(tour);
+                return Confirmation();
+            }
+            else
+            {
+                //this will throw bc no appointment passed
+                return View();
+            }
+        }
+
+        public IActionResult Confirmation()
         {
             return View();
         }

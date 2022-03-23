@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Tour
+
+<h2>Edit the tour</h2>
+
+<form method="post" asp-action="Edit">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @*Figure out how to change out the appointments here or simply combine the classes*@
+
+    <h4>Group Info</h4>
+    <div class="form-group">
+        <label asp-for="Name">Group Name:</label><input asp-for="Name" class="form-control" value="@Model.Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Size">Size of group:</label><input asp-for="Size" class="form-control" value="@Model.Size" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email:</label><input asp-for="Email" class="form-control" value="@Model.Email" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number (optional):</label><input asp-for="PhoneNumber" class="form-control" value="@Model.PhoneNumber" />
+    </div>
+
+    <div class="float-right">
+        <input class="btn btn-primary" type="submit" value="Confirm" />
+    </div>
+</form>
