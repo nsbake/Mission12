@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission12.Models;
 
@@ -31,9 +32,9 @@ namespace Mission12.Controllers
         }
 
         [HttpGet]
-        public IActionResult TourForm(Appointment appointment)
+        public IActionResult TourForm(string date, int time)
         {
-            return View(new Tour(appointment));
+            return View(date, time);
         }
 
         [HttpPost]
@@ -56,8 +57,8 @@ namespace Mission12.Controllers
         public IActionResult Edit(int id)
         {
             //TODO set all this up, ref FilmCollection proj
-            var tour = DbContext.Tours.FirstOrDefault(x => x.Id == id);
-            return View("TourForm",tour);
+            //var tour = DbContext.Tours.FirstOrDefault(x => x.Id == id);
+            return View();
         }
 
         [HttpPost]
