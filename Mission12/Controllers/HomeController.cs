@@ -15,8 +15,6 @@ namespace Mission12.Controllers
 
         private TourContext tourContext { get; set; }
 
-        //private databaseContext databaseContext {  get; set; }
-
         public HomeController(TourContext newContext)
         {
             tourContext = newContext;
@@ -69,11 +67,11 @@ namespace Mission12.Controllers
             {    
                 tourContext.Add(tour);
                 tourContext.SaveChanges();
-                return Confirmation();
+                return RedirectToAction("Confirmation");
             }
             else
             {
-                return View(tour);
+                return RedirectToAction("SignUp");
             }
         }
 
@@ -90,9 +88,9 @@ namespace Mission12.Controllers
         {
             if (ModelState.IsValid)
             {                
-                tourContext.Update(tour);
+                tourContext.Tours.Update(tour);
                 tourContext.SaveChanges();
-                return View("Confirmation");
+                return RedirectToAction("Confirmation");
             }
             else
             {

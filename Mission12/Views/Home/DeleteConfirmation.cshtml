@@ -3,14 +3,15 @@
 
 @model Tour
 
-<h2>Confirm Cancellation</h2>
-<h3>Are you sure you want to cancel the appointment for @Model.Date?</h3>
+<h2>Delete Appointment</h2>
+<br />
+<h4 class="mb-2">Are you sure you want to delete the appointment for @DateTime.Parse(Model.Date).ToString("dddd, dd MMMM yyyy")?</h4>
 
 <form method="post" asp-controller="Home" asp-action="Delete">
     @*delete*@
-    <button type="submit">Cancel Appointment</button>
+    <button class="btn btn-danger" type="submit">Delete</button>
     @*redirect*@
-    <a asp-controller="Home" asp-action="Appointments" class="btn btn-primary">Nevermind</a>
+    <a asp-controller="Home" asp-action="Appointments" class="btn btn-primary">Cancel</a>
 
     <input type="hidden" asp-for="Id" />
 </form>

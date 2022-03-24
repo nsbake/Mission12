@@ -4,24 +4,22 @@
 
 @model Tour
 
-<h2>Finalize your tour</h2>
-<p>Please enter your information</p>
+<h2>Finalize Your Tour</h2>
+<p>ENTER YOUR INFO</p>
 
 <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-
-    <h4>Group Info</h4>
     <div class="form-group">
-        <label asp-for="Name">Date:</label><input asp-for="Date" class="form-control" disabled />
+        <label asp-for="Date">Date:</label><input asp-for="Date" class="form-control" readonly />
     </div>
     <div class="form-group">
-        <label asp-for="Name">Time:</label><input asp-for="Time" class="form-control" disabled />
+        <label asp-for="Time">Time:</label><input asp-for="Time" class="form-control" readonly />
     </div>
     <div class="form-group">
         <label asp-for="Name">Group Name:</label><input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Size">Size of group:</label><input asp-for="Size" class="form-control" />
+        <label asp-for="Size">Size of Group:</label><input asp-for="Size" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Email">Email:</label><input asp-for="Email" class="form-control" />
@@ -32,6 +30,9 @@
     <input type="hidden" asp-for="Id" />
 
     <div class="float-right">
-        <input class="btn btn-primary" type="submit" value="Confirm Appointment" />
+        <button class="btn btn-primary" type="submit">Confirm Apppointment</button>
     </div>
+
+    <br />
+    <br />
 </form>

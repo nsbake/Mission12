@@ -2,41 +2,49 @@
     ViewData["Title"] = "Sign Up";
 }
 @model Date
-<h1>@ViewData["Title"]</h1>
-
-<p>Please select a date and time.</p>
-
-<form method="post" asp-action="SignUp">
-    @{ string minDate = DateTime.UtcNow.ToString("yyyy-MM-dd"); }
-    <input type="date" min="@minDate" value="@ViewBag.date" asp-for="DateStr" />
-    <button class="btn btn-primary btn-sm text-white" type="submit">Choose Date</button>
-</form>
-
-<h2 class="text-center">@ViewBag.date</h2>
-
-@for (var i = 0; i < 13; i++)
-{
-<div class="row my-2">
-    <div class="col-3"></div>
-    @{
-        int startTime = ((i + 8) % 12);
-        int endTime = ((i + 9) % 12);
-        string start = i < 4 ? "AM" : "PM";
-        string end = i < 3 ? "AM" : "PM";
-        string timeString = (startTime == 0 ? "12" : startTime.ToString()) + ":00" + start + " - " + (endTime == 0 ? "12" : endTime.ToString()) + ":00" + end;
 
 
-    }
 
-    @if (ViewBag.listTimes.Contains(timeString))
-    {
-        <button class="btn btn-secondary btn-lg col-6 font-weight-bold" disabled asp-action="TourForm" asp-route-date="@ViewBag.date" asp-route-time="@timeString">@timeString</button>
-    }
-    else
-    {
-        <a class="btn btn-primary btn-lg col-6 font-weight-bold" asp-action="TourForm" asp-route-date="@ViewBag.date" asp-route-time="@timeString">@timeString</a>
-    }
 
-    <div class="col-3"></div>
+<div class="row">
+    
+
+    <div class="col-3 form-group">
+        <h1 class="mb-3">@ViewData["Title"]</h1>
+        <form method="post" asp-action="SignUp">
+            @{ string minDate = DateTime.UtcNow.ToString("yyyy-MM-dd"); }
+            <label>SELECT A DATE AND TIME</label>
+            <input type="date" min="@minDate" value="@ViewBag.date" asp-for="DateStr" />
+            <button class="btn btn-primary btn-sm text-white mt-2" type="submit">Show Slots on Date</button>
+        </form>
+    </div>
+
+    <div class="col mt-3">
+        <h2 class="text-center my-3">@DateTime.Parse(ViewBag.date).ToString("dddd, dd MMMM yyyy")</h2>
+
+        @for (var i = 0; i < 13; i++)
+        {
+            <div class="row my-2">
+                @{
+                    int startTime = ((i + 8) % 12);
+                    int endTime = ((i + 9) % 12);
+                    string start = i < 4 ? "AM" : "PM";
+                    string end = i < 3 ? "AM" : "PM";
+                    string timeString = (startTime == 0 ? "12" : startTime.ToString()) + ":00" + start + " - " + (endTime == 0 ? "12" : endTime.ToString()) + ":00" + end;
+
+
+                }
+
+                @if (ViewBag.listTimes.Contains(timeString))
+                {
+                    <button class="btn btn-secondary btn-lg col-12 font-weight-bold" disabled asp-action="TourForm" asp-route-date="@ViewBag.date" asp-route-time="@timeString">@timeString</button>
+                }
+                else
+                {
+                    <a class="btn btn-dark btn-lg col-12 font-weight-bold" asp-action="TourForm" asp-route-date="@ViewBag.date" asp-route-time="@timeString">@timeString</a>
+                }
+            </div>
+        }
+    </div>
+
 </div>
- }
