@@ -12,15 +12,14 @@ namespace Mission12.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
         private TourContext tourContext { get; set; }
 
-        //private databaseContext databaseContext { get; set; }
+        //private databaseContext databaseContext {  get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(TourContext newContext)
         {
-            _logger = logger;
+            tourContext = newContext;
         }
 
         public IActionResult Index()
@@ -103,11 +102,9 @@ namespace Mission12.Controllers
 
         public IActionResult Appointments()
         {
-            //var listAppointments = tourContext.Tours.ToList();
+            var listAppointments = tourContext.Tours.ToList();
 
-            return View(
-                //listAppointments
-                );
+            return View(listAppointments);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

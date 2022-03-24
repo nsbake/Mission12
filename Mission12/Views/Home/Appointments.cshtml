@@ -3,7 +3,7 @@
     ViewData["Title"] = "Appointments";
 }
 
-@*@model List<Tour>*@
+@model List<Tour>
 
 <table class="table table-striped">
     <thead>
@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @*@foreach (Tour t in Model)
+        @foreach (Tour t in Model)
         {
             <tr>
                 <td>@t.Date</td>
@@ -42,6 +42,6 @@
                     </form>
                 </td>
             </tr>
-        }*@
+        }
     </tbody>
 </table>

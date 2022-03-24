@@ -8,8 +8,8 @@ using Mission12.Models;
 namespace Mission12.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20220323230636_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20220324041255_entry")]
+    partial class entry
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,18 @@ namespace Mission12.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tours");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = "08/08/08",
+                            Email = "floob@icon.com",
+                            Name = "Barnabus",
+                            PhoneNumber = "615-616-6176",
+                            Size = 6,
+                            Time = 12
+                        });
                 });
 #pragma warning restore 612, 618
         }

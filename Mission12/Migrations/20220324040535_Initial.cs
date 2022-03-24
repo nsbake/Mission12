@@ -2,7 +2,7 @@
 
 namespace Mission12.Migrations
 {
-    public partial class InitialSetup : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
