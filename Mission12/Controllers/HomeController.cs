@@ -80,6 +80,22 @@ namespace Mission12.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var selectedTour = tourContext.Tours.Single(x => x.Id == id);
+
+            return View("DeleteConfirmation", selectedTour);
+        }
+        [HttpPost]
+        public IActionResult Delete(Tour tr)
+        {
+            tourContext.Tours.Remove(tr);
+            tourContext.SaveChanges();
+
+            return RedirectToAction("Appointments");
+        }
+
         public IActionResult Confirmation()
         {
             return View();
