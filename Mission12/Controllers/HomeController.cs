@@ -26,15 +26,30 @@ namespace Mission12.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult SignUp()
         {
+            ViewBag.date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SignUp(Date date)
+        {
+            ViewBag.date = date.DateStr;
+
+            return View();
+        }
+
+        [Route("TourForm/{date}/{time:int}")]
         [HttpGet]
         public IActionResult TourForm(string date, int time)
         {
-            return View(date, time);
+            ViewBag.date = date;
+            ViewBag.time = time;
+
+            return View();
         }
 
         [HttpPost]
