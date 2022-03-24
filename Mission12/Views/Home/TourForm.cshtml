@@ -1,7 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Tour Info";
 }
 
 @model Tour
@@ -13,6 +11,12 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <h4>Group Info</h4>
+    <div class="form-group">
+        <label asp-for="Name">Date:</label><input asp-for="Date" class="form-control disabled" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name">Time:</label><input asp-for="Time" class="form-control disabled" />
+    </div>
     <div class="form-group">
         <label asp-for="Name">Group Name:</label><input asp-for="Name" class="form-control" />
     </div>

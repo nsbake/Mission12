@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,13 +12,14 @@ namespace Mission12.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        //private databaseContext databaseContext { get; set; }
+        private TourContext tourContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        //private databaseContext databaseContext {  get; set; }
+
+        public HomeController(TourContext newContext)
         {
-            _logger = logger;
+            tourContext = newContext;
         }
 
         public IActionResult Index()
@@ -46,10 +47,9 @@ namespace Mission12.Controllers
         [HttpGet]
         public IActionResult TourForm(string date, int time)
         {
-            ViewBag.date = date;
-            ViewBag.time = time;
+            var newTour = new Tour() { Date = date, Time = time };
+            return View(newTour);
 
-            return View();
         }
 
         [HttpPost]
@@ -57,23 +57,23 @@ namespace Mission12.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO update database
-                //repo.saveTour(tour);
+                
+                tourContext.Add(tour);
+                tourContext.SaveChanges();
                 return Confirmation();
             }
             else
             {
-                //this will throw bc no appointment passed
-                return View();
+                return View(tour);
             }
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            //TODO set all this up, ref FilmCollection proj
-            //var tour = DbContext.Tours.FirstOrDefault(x => x.Id == id);
-            return View();
+            
+            var tour = tourContext.Tours.FirstOrDefault(x => x.Id == id);
+            return View("TourForm",tour);
         }
 
         [HttpPost]
@@ -81,20 +81,43 @@ namespace Mission12.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO update database
-                //repo.saveTour(tour);
+                
+                tourContext.Update(tour);
+                tourContext.SaveChanges();
                 return Confirmation();
             }
             else
             {
-                //this will throw bc no appointment passed
-                return View();
+                return View("TourForm",tour);
             }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var selectedTour = tourContext.Tours.Single(x => x.Id == id);
+
+            return View("DeleteConfirmation", selectedTour);
+        }
+        [HttpPost]
+        public IActionResult Delete(Tour tr)
+        {
+            tourContext.Tours.Remove(tr);
+            tourContext.SaveChanges();
+
+            return RedirectToAction("Appointments");
         }
 
         public IActionResult Confirmation()
         {
             return View();
+        }
+
+        public IActionResult Appointments()
+        {
+            var listAppointments = tourContext.Tours.ToList();
+
+            return View(listAppointments);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

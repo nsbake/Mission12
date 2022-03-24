@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+@model List<Tour>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Name</th>
+            <th>Group Size</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Tour t in Model)
+        {
+            <tr>
+                <td>@t.Date</td>
+                <td>@t.Time</td>
+                <td>@t.Name</td>
+                <td>@t.Size</td>
+                <td>@t.Email</td>
+                <td>@t.PhoneNumber</td>
+
+                <td class="align-middle text-center">
+                    <NavLink class="btn btn-secondary btn-sm" href="">Edit</NavLink>
+                </td>
+
+                <td class="text-center">
+                    <form method="post" asp-page-handler="">
+                        <input type="hidden" name="bookID" value="@t.Id" />
+                        <button class="btn btn-sm btn-danger" type="submit">
+                            Remove
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
