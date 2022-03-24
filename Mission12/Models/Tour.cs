@@ -10,7 +10,6 @@ namespace Mission12.Models
 {
     public class Tour
     {
-        //* unsure atm if this will be needed with reqs
         [Key]
         [BindNever]
         public int Id { get; set; }

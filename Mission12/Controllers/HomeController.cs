@@ -101,6 +101,15 @@ namespace Mission12.Controllers
             return View();
         }
 
+        public IActionResult Appointments()
+        {
+            //var listAppointments = tourContext.Tours.ToList();
+
+            return View(
+                //listAppointments
+                );
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
