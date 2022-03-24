@@ -16,8 +16,6 @@ namespace Mission12.Controllers
 
         private TourContext tourContext { get; set; }
 
-        //private databaseContext databaseContext { get; set; }
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
