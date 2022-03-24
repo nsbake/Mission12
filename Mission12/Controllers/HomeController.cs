@@ -14,6 +14,8 @@ namespace Mission12.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private TourContext tourContext { get; set; }
+
         //private databaseContext databaseContext { get; set; }
 
         public HomeController(ILogger<HomeController> logger)
@@ -34,7 +36,8 @@ namespace Mission12.Controllers
         [HttpGet]
         public IActionResult TourForm(string date, int time)
         {
-            return View(date, time);
+            var newTour = new Tour() { Date = date, Time = time };
+            return View(newTour);
         }
 
         [HttpPost]
@@ -42,23 +45,23 @@ namespace Mission12.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO update database
-                //repo.saveTour(tour);
+                
+                tourContext.Add(tour);
+                tourContext.SaveChanges();
                 return Confirmation();
             }
             else
             {
-                //this will throw bc no appointment passed
-                return View();
+                return View(tour);
             }
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            //TODO set all this up, ref FilmCollection proj
-            //var tour = DbContext.Tours.FirstOrDefault(x => x.Id == id);
-            return View();
+            
+            var tour = tourContext.Tours.FirstOrDefault(x => x.Id == id);
+            return View("TourForm",tour);
         }
 
         [HttpPost]
@@ -66,14 +69,14 @@ namespace Mission12.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO update database
-                //repo.saveTour(tour);
+                
+                tourContext.Update(tour);
+                tourContext.SaveChanges();
                 return Confirmation();
             }
             else
             {
-                //this will throw bc no appointment passed
-                return View();
+                return View("TourForm",tour);
             }
         }
 
