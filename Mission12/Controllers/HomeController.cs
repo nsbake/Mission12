@@ -30,7 +30,12 @@ namespace Mission12.Controllers
         [HttpGet]
         public IActionResult SignUp()
         {
-            ViewBag.date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            ViewBag.date = date;
+
+            var listTimes = tourContext.Tours.Where(x => x.Date == date).Select(x => x.Time).ToList();
+
+            ViewBag.listTimes = listTimes;
 
             return View();
         }
@@ -40,24 +45,28 @@ namespace Mission12.Controllers
         {
             ViewBag.date = date.DateStr;
 
+            var listTimes = tourContext.Tours.Where(x => x.Date == date.DateStr).Select(x => x.Time).ToList();
+
+            ViewBag.listTimes = listTimes;
+
             return View();
         }
 
-        [Route("TourForm/{date}/{time:int}")]
+        [Route("TourForm/{date}/{time}")]
         [HttpGet]
-        public IActionResult TourForm(string date, int time)
+        public IActionResult TourForm(string date, string time)
         {
             var newTour = new Tour() { Date = date, Time = time };
             return View(newTour);
 
         }
 
+        [Route("TourForm/{date}/{time}")]
         [HttpPost]
         public IActionResult TourForm(Tour tour)
         {
             if (ModelState.IsValid)
-            {
-                
+            {    
                 tourContext.Add(tour);
                 tourContext.SaveChanges();
                 return Confirmation();

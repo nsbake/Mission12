@@ -38,8 +38,8 @@ namespace Mission12.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Time")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Time")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -54,7 +54,7 @@ namespace Mission12.Migrations
                             Name = "Barnabus",
                             PhoneNumber = "615-616-6176",
                             Size = 6,
-                            Time = 12
+                            Time = "8:00AM - 9:00AM"
                         });
                 });
 #pragma warning restore 612, 618

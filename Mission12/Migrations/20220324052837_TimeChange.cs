@@ -2,7 +2,7 @@
 
 namespace Mission12.Migrations
 {
-    public partial class Initial : Migration
+    public partial class TimeChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Mission12.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Date = table.Column<string>(nullable: true),
-                    Time = table.Column<int>(nullable: false),
+                    Time = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Size = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: false),
@@ -23,6 +23,11 @@ namespace Mission12.Migrations
                 {
                     table.PrimaryKey("PK_Tours", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Tours",
+                columns: new[] { "Id", "Date", "Email", "Name", "PhoneNumber", "Size", "Time" },
+                values: new object[] { 1, "08/08/08", "floob@icon.com", "Barnabus", "615-616-6176", 6, "8:00AM - 9:00AM" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

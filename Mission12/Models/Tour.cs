@@ -16,7 +16,7 @@ namespace Mission12.Models
 
         public string Date { get; set; }
 
-        public int Time { get; set; }
+        public string Time { get; set; }
 
         [Required(ErrorMessage ="Please provide a group name")]
         public string Name { get; set; }

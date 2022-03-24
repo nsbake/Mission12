@@ -25,7 +25,7 @@ namespace Mission12.Models
                     /*favorite movie of all time, felt necessary to comment this*/
                     Id = 1,
                     Date = "08/08/08",
-                    Time = 12,
+                    Time = "8:00AM - 9:00AM",
                     Name = "Barnabus",
                     Size = 6,
                     Email = "floob@icon.com",
