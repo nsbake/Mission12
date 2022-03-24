@@ -60,18 +60,17 @@ namespace Mission12.Controllers
         {
             
             var tour = tourContext.Tours.FirstOrDefault(x => x.Id == id);
-            return View("TourForm",tour);
+            return View("TourForm", tour);
         }
 
         [HttpPost]
         public IActionResult Edit(Tour tour)
         {
             if (ModelState.IsValid)
-            {
-                
+            {                
                 tourContext.Update(tour);
                 tourContext.SaveChanges();
-                return Confirmation();
+                return View("Confirmation");
             }
             else
             {

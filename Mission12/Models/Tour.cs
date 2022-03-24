@@ -11,7 +11,7 @@ namespace Mission12.Models
     public class Tour
     {
         [Key]
-        [BindNever]
+        [Required]
         public int Id { get; set; }
 
         public string Date { get; set; }

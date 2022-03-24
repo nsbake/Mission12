@@ -30,16 +30,11 @@
                 <td>@t.PhoneNumber</td>
 
                 <td class="align-middle text-center">
-                    <NavLink class="btn btn-secondary btn-sm" href="">Edit</NavLink>
+                    <a class="btn btn-secondary btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@t.Id">Edit</a>
                 </td>
 
                 <td class="text-center">
-                    <form method="post" asp-page-handler="">
-                        <input type="hidden" name="bookID" value="@t.Id" />
-                        <button class="btn btn-sm btn-danger" type="submit">
-                            Remove
-                        </button>
-                    </form>
+                    <a class="btn btn-secondary btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@t.Id">Delete</a>
                 </td>
             </tr>
         }
